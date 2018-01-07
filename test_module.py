@@ -1,5 +1,4 @@
 import sys
-import string
 
 assert sys.version_info >= (3,0)
 
@@ -28,7 +27,7 @@ class Test:
 				self.successful_tests += 1
 			else:
 				if self.more_info:
-					print('failed (Expected value is ' + str(expected_value) + ', but function result is ' + str(result))
+					print('failed (Expected value is ' + str(expected_value) + ', but function result is ' + str(result) + ' for input ' + str(input_value) + ')')
 		except:
 			if self.more_info:
 				print('failed (Functon failed during execution)')
@@ -44,17 +43,8 @@ class Test:
 	def run_multiple_tests(self, tests):
 		self.reset()
 		for i in tests:
-			self.run(i[0], expected_value=i[1])
+			try:
+				self.run(i[0], expected_value=i[1])
+			except:
+				pass
 		self.info()
-
-class SolutionGenerator:
-	@staticmethod
-	def generate(function, print_format, samples):
-		output = ''
-		for i in samples:
-			#try:
-			result = function(i)
-			output += string.replace(print_format, '%in%', i).replace('%out%', result)
-			#except:
-			#	pass
-		return output

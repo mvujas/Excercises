@@ -1,0 +1,5 @@
+solutionGenerator.py
+generate.py
+__pycache__/*
+**/*.swp
+**/*.pyc
